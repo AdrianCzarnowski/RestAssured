@@ -62,7 +62,6 @@ public class JsonPlaceHolderDemo extends TestBase {
             JSONObject obj = array.getJSONObject(i);
             System.out.println("><<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<");
             System.out.println(obj.get("name"));
-
         }
     }
 }
