@@ -15,14 +15,14 @@ public class JsonPlaceHolderDemo extends TestBase {
 
 
     @Test
-    public void shouldGetAllUsers(){
+    public void shouldGetAllUsers() {
         when().
                 get(BASE_URL).
-        then()
+                then()
                 .statusCode(200);
     }
 
-//    @Test
+    //    @Test
 //    public void shouldGetSpecifyName(){
 //        Response response =
 //                (Response) given()
@@ -36,17 +36,17 @@ public class JsonPlaceHolderDemo extends TestBase {
 //        JsonPath extractor = response.jsonPath().get("name");
 //        System.out.println(extractor);
 //    }
-@Test
-    public static void getSpecificPartOfResponseBody(){
+    @Test
+    public static void getSpecificPartOfResponseBody() {
 
         ArrayList<String> names;
-        names = when().get(BASE_URL+USERS).then().extract().jsonPath().get("name");
+        names = when().get(BASE_URL + USERS).then().extract().jsonPath().get("name");
 
         String listName = "";
-        for(String name :names){
+        for (String name : names) {
 
-            System.out.println("The name is "+ name);
-            listName= listName + " "+ name;
+            System.out.println("The name is " + name);
+            listName = listName + " " + name;
         }
         System.out.println("List of names " + listName);
     }
@@ -64,16 +64,16 @@ public class JsonPlaceHolderDemo extends TestBase {
 //    }
 
     @Test
-    public static void getOneUserFromArray(){
-        Response response  = RestAssured.given().when().get(BASE_URL+USERS);
+    public static void getOneUserFromArray() {
+        Response response = RestAssured.given().when().get(BASE_URL + USERS);
         JSONArray array = new JSONArray(response.getBody().asPrettyString());
         System.out.println("><<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<");
         System.out.println(array.get(0));
-
     }
+
     @Test
-    public static void getOneUserName(){
-        Response response  = RestAssured.given().when().get(BASE_URL+USERS);
+    public static void getOneUserName() {
+        Response response = RestAssured.given().when().get(BASE_URL + USERS);
         JSONArray array = new JSONArray(response.getBody().asPrettyString());
         JSONObject obj = array.getJSONObject(0);
         System.out.println("><<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<");
@@ -82,4 +82,18 @@ public class JsonPlaceHolderDemo extends TestBase {
 //        System.out.println(array.get(1));
     }
 
+    @Test
+    public static void getAllUserName() {
+        Response response = RestAssured.given().when().get(BASE_URL + USERS);
+        JSONArray array = new JSONArray(response.getBody().asPrettyString());
+        for (int i = 0; i < array.length(); i++) {
+
+            JSONObject obj = array.getJSONObject(i);
+            System.out.println("><<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<");
+            System.out.println(obj.get("username"));
+
+        }
+
+
+    }
 }
