@@ -22,20 +22,6 @@ public class JsonPlaceHolderDemo extends TestBase {
                 .statusCode(200);
     }
 
-    //    @Test
-//    public void shouldGetSpecifyName(){
-//        Response response =
-//                (Response) given()
-//                        .contentType(ContentType.JSON)
-//                        .queryParam("username", "Bret")
-//                        .queryParam("email", "Sincere@april.biz").
-//                when().
-//                        get(BASE_URL+USERS).
-//                then().
-//                        statusCode(200).extract().response();
-//        JsonPath extractor = response.jsonPath().get("name");
-//        System.out.println(extractor);
-//    }
     @Test
     public static void getSpecificPartOfResponseBody() {
 
@@ -50,19 +36,6 @@ public class JsonPlaceHolderDemo extends TestBase {
         }
         System.out.println("List of names " + listName);
     }
-//    @Test
-//    public static void getSpecificName(){
-//
-//        ArrayList<String> names;
-//        names = when().get(BASE_URL+USERS).then().extract().jsonPath().get();
-//
-//        String listName = "";
-////            System.out.println("The name is "+ name);
-//        listName=names.get(0);
-//
-//        System.out.println("Name is " + listName);
-//    }
-
     @Test
     public static void getOneUserFromArray() {
         Response response = RestAssured.given().when().get(BASE_URL + USERS);
@@ -78,8 +51,6 @@ public class JsonPlaceHolderDemo extends TestBase {
         JSONObject obj = array.getJSONObject(0);
         System.out.println("><<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<");
         System.out.println(obj.get("username"));
-
-//        System.out.println(array.get(1));
     }
 
     @Test
@@ -90,10 +61,8 @@ public class JsonPlaceHolderDemo extends TestBase {
 
             JSONObject obj = array.getJSONObject(i);
             System.out.println("><<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<");
-            System.out.println(obj.get("username"));
+            System.out.println(obj.get("name"));
 
         }
-
-
     }
 }
