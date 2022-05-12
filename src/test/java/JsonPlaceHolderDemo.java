@@ -1,10 +1,12 @@
 import io.restassured.RestAssured;
+import io.restassured.path.json.JsonPath;
 import io.restassured.response.Response;
 import org.json.JSONArray;
 import org.json.JSONObject;
 import org.testng.annotations.Test;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import static io.restassured.RestAssured.*;
 
@@ -62,6 +64,12 @@ public class JsonPlaceHolderDemo extends TestBase {
             System.out.println("><<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<");
             System.out.println(obj.get("name"));
             System.out.println(obj.get("username"));
+            System.out.println(obj.get("address"));
+            JSONObject obj1 = (JSONObject) obj.get("address");
+            System.out.println("!!!!!!!!!!!!!!");
+            System.out.println(obj1.get("city"));
+//            List<Object> zips = JsonPath.from(String.valueOf(obj)).getList("address.flatten().zipcode");
+//            System.out.println(zips);
 
 
 //            System.out.println(obj.get("address"));
