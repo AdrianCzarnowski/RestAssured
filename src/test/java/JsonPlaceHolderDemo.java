@@ -58,7 +58,6 @@ public class JsonPlaceHolderDemo extends TestBase {
         Response response = RestAssured.given().when().get(BASE_URL + USERS);
         JSONArray array = new JSONArray(response.getBody().asPrettyString());
         for (int i = 0; i < array.length(); i++) {
-
             JSONObject obj = array.getJSONObject(i);
             System.out.println("><<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<");
             System.out.println(obj.get("name"));
