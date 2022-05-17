@@ -1,6 +1,10 @@
 import io.restassured.RestAssured;
+import io.restassured.http.ContentType;
 import io.restassured.path.json.JsonPath;
 import io.restassured.response.Response;
+import io.restassured.specification.RequestSpecification;
+import io.restassured.specification.ResponseSpecification;
+import org.hamcrest.Matchers;
 import org.json.JSONArray;
 import org.json.JSONObject;
 import org.testng.annotations.Test;
@@ -16,6 +20,62 @@ public class JsonPlaceHolderDemo extends TestBase {
     private static final String USERS = "users";
 
 
+    @Test
+    public void weather(){
+        given()
+                .log()
+                .all()
+                .header("name:", "Adrian")
+                .header("age:", "29")
+                .param("q","London,uk")
+                .param("appid", "b1b15e88fa797225412429c1c50c122a1").
+        when()
+                .get("https://samples.openweathermap.org/data/2.5/weather").
+        then()
+                .log()
+                .all()
+                .statusCode(200);
+    }
+    @Test
+    public void weather2(){
+        RequestSpecification requestSpecification1 = given()
+                .log()
+                .all()
+                .header("name:", "Adrian")
+                .header("age:", "29")
+                .param("q","London,uk")
+                .param("appid", "b1b15e88fa797225412429c1c50c122a1");
+
+        given(requestSpecification1).
+        when()
+                .get("https://samples.openweathermap.org/data/2.5/weather").
+        then()
+                .log()
+                .all()
+                .statusCode(200);
+    }
+
+    @Test
+    public void weather3(){
+        RequestSpecification requestSpecification = given()
+                .log()
+                .all()
+                .header("name:", "Adrian")
+                .header("age:", "29")
+                .param("q","London,uk")
+                .param("appid", "b1b15e88fa797225412429c1c50c122a1");
+        ResponseSpecification responseSpecification = RestAssured.expect();
+        responseSpecification.log().all();
+        responseSpecification.time(Matchers.lessThan(5000L));
+        responseSpecification.contentType(ContentType.JSON);
+        responseSpecification.statusCode(200);
+
+        given(requestSpecification).
+        when()
+                .get("https://samples.openweathermap.org/data/2.5/weather").
+        then()
+                .spec(responseSpecification);
+    }
     @Test
     public void shouldGetAllUsers() {
         when().
@@ -75,4 +135,5 @@ public class JsonPlaceHolderDemo extends TestBase {
 //            System.out.println(obj.get("address"));
         }
     }
+
 }
