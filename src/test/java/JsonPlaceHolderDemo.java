@@ -64,6 +64,7 @@ public class JsonPlaceHolderDemo extends TestBase {
                 .header("age:", "29")
                 .param("q","London,uk")
                 .param("appid", "b1b15e88fa797225412429c1c50c122a1");
+
         ResponseSpecification responseSpecification = RestAssured.expect();
         responseSpecification.log().all();
         responseSpecification.time(Matchers.lessThan(5000L));
