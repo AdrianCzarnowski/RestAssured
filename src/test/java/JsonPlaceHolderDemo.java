@@ -41,7 +41,7 @@ public class JsonPlaceHolderDemo extends TestBase {
         RequestSpecification requestSpecification1 = given()
                 .log()
                 .all()
-                .header("name:", "Adrian")
+                .header("name:", System.getProperty("name"))
                 .header("age:", "29")
                 .param("q","London,uk")
                 .param("appid", "b1b15e88fa797225412429c1c50c122a1");

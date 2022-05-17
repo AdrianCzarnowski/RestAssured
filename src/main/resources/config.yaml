@@ -1,0 +1,17 @@
+environment:
+  prod:
+    appUrl: http://automationpractice.com/index.php
+    active: true
+    waitTime: 15
+    name : Adrian
+
+  init:
+    appUrl: http://automationpractice.com/index.php
+    active: false
+    waitTime: 15
+
+
+
+
+
+
