@@ -13,6 +13,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static io.restassured.RestAssured.*;
+import static java.lang.System.getProperty;
 
 public class JsonPlaceHolderDemo extends TestBase {
 
@@ -34,25 +35,29 @@ public class JsonPlaceHolderDemo extends TestBase {
         then()
                 .log()
                 .all()
-                .statusCode(200);
+                .statusCode(Integer.parseInt(getProperty("status_code")));
     }
     @Test
     public void weather2(){
         RequestSpecification requestSpecification1 = given()
                 .log()
                 .all()
-                .header("name:", System.getProperty("name"))
-                .header("age:", "29")
-                .param("q","London,uk")
-                .param("appid", "b1b15e88fa797225412429c1c50c122a1");
+                .header(getProperty("header_name"), getProperty("name"))
+                .header(getProperty("header_age"), getProperty("age"))
+                .param(getProperty("param_city_tag"), getProperty("param_city_name"))
+                .param(getProperty("param_id"), getProperty("param_token"));
+
+        ResponseSpecification responseSpecification = RestAssured.expect();
+        responseSpecification.log().all();
+        responseSpecification.time(Matchers.lessThan(Long.parseLong(System.getProperty("load_time"))));
+        responseSpecification.contentType(ContentType.JSON);
+        responseSpecification.statusCode(Integer.parseInt(getProperty("status_code")));
 
         given(requestSpecification1).
         when()
-                .get("https://samples.openweathermap.org/data/2.5/weather").
+                .get(getProperty("BASE_URL")+ getProperty("endpoint")).
         then()
-                .log()
-                .all()
-                .statusCode(200);
+                .spec(responseSpecification);
     }
 
     @Test
