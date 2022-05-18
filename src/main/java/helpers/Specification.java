@@ -30,6 +30,7 @@ public class Specification {
         responseSpecification.time(Matchers.lessThan(5000L));
         responseSpecification.contentType(ContentType.JSON);
         responseSpecification.statusCode(parseInt(getProperty("status_code")));
+        logger.info("Assertion passed");
         logger.info("Api test completed");
         return responseSpecification;
     }
