@@ -7,17 +7,14 @@ import io.restassured.filter.log.ResponseLoggingFilter;
 import org.testng.annotations.BeforeMethod;
 
 
-
 public class TestBase extends Specification {
 
     private static App app;
 
     @BeforeMethod
-    public void setUp(){
+    public void setUp() {
         RestAssured.filters(new RequestLoggingFilter(), new ResponseLoggingFilter());
         app = new App();
     }
-
-
 }
 
