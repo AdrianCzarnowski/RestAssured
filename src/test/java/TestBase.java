@@ -8,13 +8,12 @@ import org.testng.annotations.BeforeMethod;
 
 
 
-public class TestBase extends Specification {
+public class TestBase extends Specification  {
 
     private static App app;
 
     @BeforeMethod
     public void setUp(){
-//        RestAssured.enableLoggingOfRequestAndResponseIfValidationFails();
         RestAssured.filters(new RequestLoggingFilter(), new ResponseLoggingFilter());
         app = new App();
     }

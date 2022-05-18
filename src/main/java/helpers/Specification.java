@@ -5,8 +5,6 @@ import io.restassured.http.ContentType;
 import io.restassured.specification.RequestSpecification;
 import io.restassured.specification.ResponseSpecification;
 import org.hamcrest.Matchers;
-import org.json.JSONArray;
-import org.json.JSONObject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -33,5 +31,8 @@ public class Specification {
         responseSpecification.statusCode(Integer.parseInt(System.getProperty("status_code")));
         logger.info("Api test completed");
         return responseSpecification;
+    }
+    public String getWeatherUrlAndEndpoint(){
+        return getProperty("BASE_URL") + getProperty("endpoint");
     }
 }
