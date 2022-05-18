@@ -8,7 +8,7 @@ import org.testng.annotations.BeforeMethod;
 
 
 
-public class TestBase extends Specification  {
+public class TestBase extends Specification {
 
     private static App app;
 
