@@ -8,6 +8,9 @@ import reader.YamlReader;
 
 import java.util.List;
 import java.util.Map;
+import java.util.Map.Entry;
+
+import static java.lang.System.setProperty;
 
 public class App {
     private static Logger log = LoggerFactory.getLogger("AppProperties.class");
@@ -24,8 +27,8 @@ public class App {
             if (environmentModel.isActive()) {
                 foundActiveBrowser = true;
                 Map<String, Object> properties = environmentModel.getEnvironmentProperties();
-                for (Map.Entry entry : properties.entrySet()) {
-                    System.setProperty(entry.getKey().toString(), entry.getValue().toString());
+                for (Entry entry : properties.entrySet()) {
+                    setProperty(entry.getKey().toString(), entry.getValue().toString());
                 }
                 log.info("Properties size: " + properties.size());
                 break;

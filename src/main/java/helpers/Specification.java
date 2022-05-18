@@ -10,6 +10,7 @@ import org.slf4j.LoggerFactory;
 
 
 import static io.restassured.RestAssured.given;
+import static java.lang.Integer.parseInt;
 import static java.lang.System.getProperty;
 
 public class Specification {
@@ -28,7 +29,7 @@ public class Specification {
         ResponseSpecification responseSpecification = RestAssured.expect();
         responseSpecification.time(Matchers.lessThan(5000L));
         responseSpecification.contentType(ContentType.JSON);
-        responseSpecification.statusCode(Integer.parseInt(System.getProperty("status_code")));
+        responseSpecification.statusCode(parseInt(getProperty("status_code")));
         logger.info("Api test completed");
         return responseSpecification;
     }
