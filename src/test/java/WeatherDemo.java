@@ -25,14 +25,14 @@ public class WeatherDemo extends TestBase {
 
     @Test
     public void weatherInLondonPartResponseAssertion() {
-        String country = given(getRequestSpecificationWeather()).
+        String bodyPart = given(getRequestSpecificationWeather()).
         when()
                 .get(getWeatherUrlAndEndpoint()).
         then()
                 .spec(getResponseSpecificationWeather())
                 .extract()
                 .path(getProperty("body_part_to_test"));
-        assertEquals(getProperty("country"), country);
+        assertEquals(getProperty("country"), bodyPart);
     }
 }
 
