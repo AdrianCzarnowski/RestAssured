@@ -7,6 +7,7 @@ import io.restassured.specification.ResponseSpecification;
 import org.hamcrest.Matchers;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import static org.hamcrest.Matchers.is;
 
 
 import static io.restassured.RestAssured.given;
@@ -30,7 +31,6 @@ public class Specification {
         responseSpecification.time(Matchers.lessThan(5000L));
         responseSpecification.contentType(ContentType.JSON);
         responseSpecification.statusCode(parseInt(getProperty("status_code")));
-        logger.info("Assertion passed");
         logger.info("Api test completed");
         return responseSpecification;
     }

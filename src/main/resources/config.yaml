@@ -13,6 +13,8 @@ environment:
     param_id: appid
     param_token: b1b15e88fa797225412429c1c50c122a1
     load_time: 5000L
+    body_part_to_test: sys.country
+    country: GB
 
 
 
