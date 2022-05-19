@@ -7,6 +7,8 @@ import io.restassured.specification.ResponseSpecification;
 import org.hamcrest.Matchers;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
+import static java.lang.Integer.getInteger;
 import static org.hamcrest.Matchers.is;
 
 
@@ -20,7 +22,7 @@ public class Specification {
     public RequestSpecification getRequestSpecificationWeather() {
         RequestSpecification requestSpecification = given()
                 .header(getProperty("header_name"), getProperty("name"))
-                .header(getProperty("header_age"), getProperty("age"))
+                .header(getProperty("header_age"), getInteger("age"))
                 .param(getProperty("param_city_tag"), getProperty("param_city_name"))
                 .param(getProperty("param_id"), getProperty("param_token"));
         return requestSpecification;
@@ -30,7 +32,7 @@ public class Specification {
         ResponseSpecification responseSpecification = RestAssured.expect();
         responseSpecification.time(Matchers.lessThan(5000L));
         responseSpecification.contentType(ContentType.JSON);
-        responseSpecification.statusCode(parseInt(getProperty("status_code")));
+        responseSpecification.statusCode(getInteger("status_code"));
         logger.info("Api test completed");
         return responseSpecification;
     }

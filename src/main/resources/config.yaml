@@ -23,7 +23,7 @@ environment:
     active: false
     BASE_URL: https://samples.openweathermap.org/
     endpoint: data/2.5/weather
-    status_code: 200
+    status_code: "200"
     header_name: name
     name : Adrian
     header_age: age
